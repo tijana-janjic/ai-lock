@@ -32,7 +32,6 @@ public class UnlockAStar extends Unlock {
 
         @Override
         public String toString() {
-            //return "{"+from+" -> "+ to+ "} :  "+ costFromStart+",  "+costToEnd+", "+getTotalCost();
             return " " + getTotalCost();
         }
     }
@@ -63,11 +62,9 @@ public class UnlockAStar extends Unlock {
 
                 map.put(to, from);
 
-                // dosli smo do zeljene kombinacije
                 if(to.equals(end))
                     break;
 
-                // inace: dodajemo sve moguce nastavke puta
                 for (int i = 0; i < to.length(); i++) {
                                         PathToCombination path;
                     if ((path = getUpper(end, to, currCostFromStart, i)) != null) queue.add(path);
@@ -83,15 +80,7 @@ public class UnlockAStar extends Unlock {
             path.addFirst(currentComb);
     }
 
-    private PathToCombination getUpper(String end, String to, int currCostFromStart, int i) {
-        int newVal = ((to.charAt(i) - 48) + 10 + 1) % 10;
-        return createPath(end, to, currCostFromStart, i, newVal);
-    }
 
-    private PathToCombination getBottom(String end, String to, int currCostFromStart, int i) {
-        int newVal = ((to.charAt(i) - 48) + 10 - 1) % 10;
-        return createPath(end, to, currCostFromStart, i, newVal);
-    }
 
     private PathToCombination createPath(String end, String to, int currCostFromStart, int i, int newVal) {
         StringBuilder s = new StringBuilder(to);
@@ -106,6 +95,16 @@ public class UnlockAStar extends Unlock {
         int fromNeighborCost = findEstimate(currNeighbor, end);
 
         return new PathToCombination(to, currNeighbor, toNeighborCost, fromNeighborCost);
+    }
+
+    private PathToCombination getUpper(String end, String to, int currCostFromStart, int i) {
+        int newVal = ((to.charAt(i) - 48) + 10 + 1) % 10;
+        return createPath(end, to, currCostFromStart, i, newVal);
+    }
+
+    private PathToCombination getBottom(String end, String to, int currCostFromStart, int i) {
+        int newVal = ((to.charAt(i) - 48) + 10 - 1) % 10;
+        return createPath(end, to, currCostFromStart, i, newVal);
     }
 
     private int findEstimate(String start, String end) {

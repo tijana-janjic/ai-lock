@@ -29,6 +29,7 @@ public class UnlockUCS extends Unlock {
         findPath(lock.getStart(), lock.getEnd());
         prettyPrintPath();
     }
+
     protected void findPath(String start, String end) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -43,8 +44,6 @@ public class UnlockUCS extends Unlock {
             String from = currPath.from;
             String to = currPath.to;
             int currCost = currPath.cost;
-
-            //int currStepCost = lock.getCosts().get(map.get(to));
 
             if(!map.containsKey(to)) {
 

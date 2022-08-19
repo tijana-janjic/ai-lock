@@ -1,21 +1,15 @@
-import java.util.HashSet;
 import java.util.LinkedList;
 
-public class Unlock {
+public abstract class Unlock {
 
     protected final Lock lock;
     protected int cost;
     protected final LinkedList<String> path;
     protected int steps = 0;
 
-
     public Unlock(Lock lock) {
         this.lock = lock;
         path = new LinkedList<>();
-    }
-
-    public HashSet<String> getAvailable(String string) {
-        return lock.getNeighbors(string);
     }
 
     protected void prettyPrintPath() {
@@ -32,9 +26,11 @@ public class Unlock {
         System.out.println("Broj koraka: " + steps );
         System.out.println();
 
-
         for (String s : path) System.out.println("\t" + s);
 
-
     }
+
+    public abstract void unlock();
+
+
 }

@@ -22,14 +22,11 @@ public class Generator {
 
             out.append("---costs---").append("\n");
 
-            int[][] costs = new int[4][10];
             int minCost = Integer.MAX_VALUE;
             for (int i = 0; i < 4; i++) {
                 for (int j = 0; j < 10; j++) {
                     int val = random.nextInt(1000);
-                    costs[i][j] = val;
                     out.append(String.valueOf(val)).append("\n");
-
                     if(val < minCost)
                         minCost = val;
                 }
