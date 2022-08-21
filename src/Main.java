@@ -14,7 +14,7 @@ public class Main {
 
         Scanner in = new Scanner(System.in);
         String op = in.nextLine();
-        while(!op.equals("no")){
+        do {
             switch (op) {
                 case "1" -> {
 
@@ -88,6 +88,6 @@ public class Main {
                 """);
 
             op = in.nextLine();
-        }
+        } while(!op.equals("end"));
     }
 }

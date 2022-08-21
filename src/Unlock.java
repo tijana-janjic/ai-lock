@@ -29,12 +29,12 @@ public abstract class Unlock {
 
     protected void prettyPrintPath() {
         if (path.size() <= 1) {
-            System.out.println("Nije moguce naci put!");
+            System.out.println("Nije moguće pronaći put!");
             return;
         }
 
-        System.out.println("Pocetni: " + lock.getStart());
-        System.out.println("Krajnji: " + lock.getEnd());
+        System.out.println("Početna: " + lock.getStart());
+        System.out.println("Krajnja: " + lock.getEnd());
         System.out.println("Broj potrebnih poteza: " + (path.size()-1) );
         System.out.println("Cena: " + cost );
         System.out.println("Minimalna cena: " + lock.getMinCost() );
