@@ -18,13 +18,12 @@ public class Main {
         Lock lock = new Lock("data.txt");
 
         System.out.println("\n--------- UCS ---------\n");
-        UnlockUCS unlockUCS = new UnlockUCS(lock);
+        Unlock unlockUCS = new UnlockUCS(lock);
         unlockUCS.unlock();
-
 
         lock = new Lock("data.txt");
         System.out.println("\n--------- A* ---------\n");
-        UnlockAStar unlockAStar = new UnlockAStar(lock);
+        Unlock unlockAStar = new UnlockAStar(lock);
         unlockAStar.unlock();
     }
 }

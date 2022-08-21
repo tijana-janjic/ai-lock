@@ -18,7 +18,6 @@ public class UnlockAStar extends Unlock {
             this.to = to;
             this.costFromStart = costFromStart;
             this.costToEnd = costToEnd;
-
         }
 
         public int getTotalCost() {
@@ -49,6 +48,7 @@ public class UnlockAStar extends Unlock {
         PriorityQueue<PathToCombination> queue = new PriorityQueue<>();
         PathToCombination currPath = new PathToCombination(null, start, 0, 0);
         queue.add(currPath);
+
         while (!queue.isEmpty()) {
             steps++;
             currPath = queue.poll();
@@ -66,14 +66,14 @@ public class UnlockAStar extends Unlock {
                     break;
 
                 for (int i = 0; i < to.length(); i++) {
-                                        PathToCombination path;
+                    PathToCombination path;
                     if ((path = getUpper(end, to, currCostFromStart, i)) != null) queue.add(path);
                     if ((path = getBottom(end, to, currCostFromStart, i)) != null) queue.add(path);
-
                 }
 
             }
         }
+
         cost = currPath.getTotalCost();
 
         for (String currentComb = end; currentComb != null ; currentComb = map.get(currentComb))
