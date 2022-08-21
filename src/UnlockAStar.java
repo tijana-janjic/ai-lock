@@ -35,12 +35,6 @@ public class UnlockAStar extends Unlock {
         }
     }
 
-    public void unlock(){
-        findPath(lock.getStart(), lock.getEnd());
-        prettyPrintPath();
-    }
-
-
     protected void findPath(String start, String end) {
 
         HashMap<String, String> map = new HashMap<>();

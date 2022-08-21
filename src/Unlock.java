@@ -30,6 +30,12 @@ public abstract class Unlock {
 
     }
 
-    public abstract void unlock();
+    public void unlock() {
+        findPath(lock.getStart(), lock.getEnd());
+        prettyPrintPath();
+    }
+
+    protected abstract void findPath(String start, String end);
+
 
 }

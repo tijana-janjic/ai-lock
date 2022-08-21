@@ -25,11 +25,6 @@ public class UnlockUCS extends Unlock {
 
     }
 
-    public void unlock(){
-        findPath(lock.getStart(), lock.getEnd());
-        prettyPrintPath();
-    }
-
     protected void findPath(String start, String end) {
         HashMap<String, String> map = new HashMap<>();
 
@@ -45,11 +40,10 @@ public class UnlockUCS extends Unlock {
 
             int currCost = currPath.cost;
 
-            if(!map.containsKey(to)) {
+            if (!map.containsKey(to)) {
 
                 map.put(to, from);
-
-                if(to.equals(end))
+                if (to.equals(end))
                     break;
 
                 for (int i = 0; i < 4; i++) {
@@ -62,8 +56,19 @@ public class UnlockUCS extends Unlock {
 
         cost = currPath.cost;
 
-        for (String currentComb = end; currentComb != null ; currentComb = map.get(currentComb))
+        for (String currentComb = end; currentComb != null; currentComb = map.get(currentComb)){
             path.addFirst(currentComb);
+        }
+    }
+
+    private PathToCombination getUpper(String to, int currCostFromStart, int i) {
+        int newVal = ((to.charAt(i) - 48) + 10 + 1) % 10;
+        return createPath(to, currCostFromStart, i, newVal);
+    }
+
+    private PathToCombination getBottom(String to, int currCostFromStart, int i) {
+        int newVal = ((to.charAt(i) - 48) + 10 - 1) % 10;
+        return createPath(to, currCostFromStart, i, newVal);
     }
 
     private PathToCombination createPath(String to, int currCostFromStart, int i, int newVal) {
@@ -78,16 +83,6 @@ public class UnlockUCS extends Unlock {
         int cost = currCostFromStart + lock.getCosts()[i][newVal];
 
         return new PathToCombination(to, currNeighbor, cost);
-    }
-
-    private PathToCombination getUpper(String to, int currCostFromStart, int i) {
-        int newVal = ((to.charAt(i) - 48) + 10 + 1) % 10;
-        return createPath(to, currCostFromStart, i, newVal);
-    }
-
-    private PathToCombination getBottom(String to, int currCostFromStart, int i) {
-        int newVal = ((to.charAt(i) - 48) + 10 - 1) % 10;
-        return createPath(to, currCostFromStart, i, newVal);
     }
 
 
