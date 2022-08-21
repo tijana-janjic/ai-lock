@@ -12,30 +12,38 @@ public abstract class Unlock {
         path = new LinkedList<>();
     }
 
+    public void unlock() {
+        if(lock.getBlocking().contains(lock.getStart())){
+            System.out.println("Početna kombinacija blokira bravu!");
+            return;
+        }
+        if(lock.getBlocking().contains(lock.getEnd())){
+            System.out.println("Krajnja kombinacija blokira bravu!");
+            return;
+        }
+        findPath(lock.getStart(), lock.getEnd());
+        prettyPrintPath();
+    }
+
+    protected abstract void findPath(String start, String end);
+
     protected void prettyPrintPath() {
-        if (path.size() == 1) {
+        if (path.size() <= 1) {
             System.out.println("Nije moguce naci put!");
             return;
         }
 
         System.out.println("Pocetni: " + lock.getStart());
         System.out.println("Krajnji: " + lock.getEnd());
-        System.out.println("Broj koraka: " + (path.size()-1) );
+        System.out.println("Broj potrebnih poteza: " + (path.size()-1) );
         System.out.println("Cena: " + cost );
         System.out.println("Minimalna cena: " + lock.getMinCost() );
-        System.out.println("Broj koraka: " + steps );
+        System.out.println("Broj koraka algoritma: " + steps );
         System.out.println();
 
         for (String s : path) System.out.println("\t" + s);
 
     }
-
-    public void unlock() {
-        findPath(lock.getStart(), lock.getEnd());
-        prettyPrintPath();
-    }
-
-    protected abstract void findPath(String start, String end);
 
 
 }

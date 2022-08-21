@@ -26,6 +26,7 @@ public class UnlockUCS extends Unlock {
     }
 
     protected void findPath(String start, String end) {
+
         HashMap<String, String> map = new HashMap<>();
 
         PriorityQueue<PathToCombination> queue = new PriorityQueue<>();
